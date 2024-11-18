@@ -45,7 +45,7 @@ export class AppService
     // Logic to fetch weather based on coordinates
     // url
     const url = `${this.apiUrl}/${typeAPI}/?lat=${lat}&lon=${long}&units=imperial&APPID=${this.apiKey}`;
-
+    console.log(url);
     return firstValueFrom(this.httpService.get(url).pipe(
       map(response => response.data)
     ));
