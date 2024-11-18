@@ -3,6 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 
 @Injectable()
@@ -43,10 +44,10 @@ export class AppService
   {
     // Logic to fetch weather based on coordinates
     // url
-    const url = `${this.apiUrl}/${typeAPI}/?lat=${lat}&lon=${long}&units=metric&APPID=${this.apiKey}`;
-    console.log(url);
-    return this.httpService.get(url).pipe(
+    const url = `${this.apiUrl}/${typeAPI}/?lat=${lat}&lon=${long}&units=imperial&APPID=${this.apiKey}`;
+
+    return firstValueFrom(this.httpService.get(url).pipe(
       map(response => response.data)
-    );
+    ));
   }
 }

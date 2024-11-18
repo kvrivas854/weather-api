@@ -20,7 +20,7 @@ describe('AppController', () =>
   {
     it('should return "Hello World!"', () =>
     {
-      expect(appController.getWeather(lat, long, typeAPI)).toBe({});
+      expect(appController.getWeather()).toBe('Hello World!');
     });
   });
 });
